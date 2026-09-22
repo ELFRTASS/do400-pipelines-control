@@ -1,7 +1,8 @@
 pipeline {
     agent {
-        node {
-            label 'nodejs'
+        kubernetes {
+            inheritFrom 'nodejs'        // our "nodejs" template (Helm)
+            defaultContainer 'nodejs'   // every sh step runs in the node:20 container
         }
     }
     stages {
